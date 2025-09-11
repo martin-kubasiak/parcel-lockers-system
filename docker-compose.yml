@@ -1,0 +1,156 @@
+services:
+
+  mysql1:
+    image: mysql:latest
+    volumes:
+      - mysql1:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_1
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user1234
+      MYSQL_TCP_PORT: 3310
+    ports:
+      - "3310:3310"
+    expose:
+      - 3310
+    networks:
+      - parcel-lockers-network
+
+  mysql2:
+    image: mysql:latest
+    volumes:
+      - mysql2:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_2
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user1234
+      MYSQL_TCP_PORT: 3311
+    ports:
+      - "3311:3311"
+    expose:
+      - 3311
+    networks:
+      - parcel-lockers-network
+
+  mysql3:
+    image: mysql:latest
+    volumes:
+      - mysql3:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_3
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user1234
+      MYSQL_TCP_PORT: 3312
+    ports:
+      - "3312:3312"
+    expose:
+      - 3312
+    networks:
+      - parcel-lockers-network
+
+  mysql4:
+    image: mysql:latest
+    volumes:
+      - mysql4:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_4
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user1234
+      MYSQL_TCP_PORT: 3313
+    ports:
+      - "3313:3313"
+    expose:
+      - 3313
+    networks:
+      - parcel-lockers-network
+
+  mysql5:
+    image: mysql:latest
+    volumes:
+      - mysql5:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_5
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user1234
+      MYSQL_TCP_PORT: 3314
+    ports:
+      - "3314:3314"
+    expose:
+      - 3314
+    networks:
+      - parcel-lockers-network
+
+  user-service:
+    image: user-service
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - parcel-lockers-network
+
+  notification-service:
+    image: notification-service
+    build:
+      context: ./notification-service
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8200:8200"
+    networks:
+      - parcel-lockers-network
+
+  order-service:
+    image: order-service
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8300:8300"
+    networks:
+      - parcel-lockers-network
+
+  parcel-machine-service:
+    image: parcel-machine-service
+    build:
+      context: ./parcel-machine-service
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8400:8400"
+    networks:
+      - parcel-lockers-network
+
+  parcel-service:
+    image: parcel-service
+    build:
+      context: ./parcel-service
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8500:8500"
+    networks:
+      - parcel-lockers-network
+
+volumes:
+  mysql1:
+  mysql2:
+  mysql3:
+  mysql4:
+  mysql5:
+
+networks:
+  parcel-lockers-network:
