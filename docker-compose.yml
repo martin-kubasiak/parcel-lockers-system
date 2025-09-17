@@ -5,16 +5,12 @@ services:
     volumes:
       - mysql1:/var/lib/mysql
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: db_1
-      MYSQL_USER: user
-      MYSQL_PASSWORD: user1234
-      MYSQL_TCP_PORT: 3310
+    env_file:
+      - ./user-service/.env
     ports:
-      - "3310:3310"
+      - "${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}"
     expose:
-      - 3310
+      - ${MYSQL_TCP_PORT}
     networks:
       - parcel-lockers-network
 
@@ -98,6 +94,8 @@ services:
     restart: always
     ports:
       - "8080:8080"
+    depends_on:
+      - mysql1
     networks:
       - parcel-lockers-network
 
