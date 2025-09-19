@@ -19,16 +19,12 @@ services:
     volumes:
       - mysql2:/var/lib/mysql
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: db_2
-      MYSQL_USER: user
-      MYSQL_PASSWORD: user1234
-      MYSQL_TCP_PORT: 3311
+    env_file:
+      - ./parcel-service/.env
     ports:
-      - "3311:3311"
+      - "${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}"
     expose:
-      - 3311
+      - ${MYSQL_TCP_PORT}
     networks:
       - parcel-lockers-network
 
