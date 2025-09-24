@@ -47,16 +47,12 @@ services:
     volumes:
       - mysql4:/var/lib/mysql
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: db_4
-      MYSQL_USER: user
-      MYSQL_PASSWORD: user1234
-      MYSQL_TCP_PORT: 3313
+    env_file:
+      - ./parcel-machine-service/.env
     ports:
-      - "3313:3313"
+      - "${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}"
     expose:
-      - 3313
+      - ${MYSQL_TCP_PORT}
     networks:
       - parcel-lockers-network
 
@@ -108,6 +104,8 @@ services:
     restart: always
     ports:
       - "8300:8300"
+    depends_on:
+      - mysql3
     networks:
       - parcel-lockers-network
 
@@ -119,6 +117,8 @@ services:
     restart: always
     ports:
       - "8400:8400"
+    depends_on:
+      - mysql4
     networks:
       - parcel-lockers-network
 
