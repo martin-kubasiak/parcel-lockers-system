@@ -33,16 +33,12 @@ services:
     volumes:
       - mysql3:/var/lib/mysql
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: db_3
-      MYSQL_USER: user
-      MYSQL_PASSWORD: user1234
-      MYSQL_TCP_PORT: 3312
+    env_file:
+      - ./order-service/.env
     ports:
-      - "3312:3312"
+      - "${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}"
     expose:
-      - 3312
+      - ${MYSQL_TCP_PORT}
     networks:
       - parcel-lockers-network
 
@@ -99,6 +95,8 @@ services:
     restart: always
     ports:
       - "8200:8200"
+    depends_on:
+      - mysql2
     networks:
       - parcel-lockers-network
 
