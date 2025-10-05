@@ -1,6 +1,7 @@
 package com.app.userservice.domain.model;
 
 public class User {
+
     UserId id;
     String firstName;
     String LastName;
@@ -8,6 +9,5 @@ public class User {
     String password;
     double latitude;
     double longitude;
-
 
 }
