@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: user-service
+
+overpass:
+  base-url: https://overpass-api.de/api

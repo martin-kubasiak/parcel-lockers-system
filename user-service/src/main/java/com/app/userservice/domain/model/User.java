@@ -7,7 +7,7 @@ public class User {
     String LastName;
     String email;
     String password;
-    double latitude;
-    double longitude;
+    Location location;
+    ParcelMachinePreference parcelMachinePreference;
 
 }
