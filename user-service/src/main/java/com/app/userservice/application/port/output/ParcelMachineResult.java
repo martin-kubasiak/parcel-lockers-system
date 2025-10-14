@@ -1,4 +1,6 @@
 package com.app.userservice.application.port.output;
 
-public record ParcelMachineResult() {
+import com.app.userservice.domain.model.Location;
+
+public record ParcelMachineResult(String machineId, String labal, Location location) {
 }

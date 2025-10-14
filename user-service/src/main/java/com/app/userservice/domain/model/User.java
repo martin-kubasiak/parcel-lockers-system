@@ -4,7 +4,7 @@ public class User {
 
     UserId id;
     String firstName;
-    String LastName;
+    String lastName;
     String email;
     String password;
     Location location;
