@@ -12,18 +12,10 @@ import org.springframework.web.client.RestClient;
 import java.util.Optional;
 
 @Component
+@RequiredArgsConstructor
 public class OverpassParcelMachineClient implements ParcelMachineClient {
 
-    private final String baseUrl;
     private final RestClient restClient;
-
-    public OverpassParcelMachineClient(
-            @Value("${overpass.base-url}")
-            String baseUrl,
-            RestClient restClient) {
-        this.baseUrl = baseUrl;
-        this.restClient = restClient;
-    }
 
     @Override
     public Optional<ParcelMachineResult> findNearest(Location userLocation, double radiusKm) {
