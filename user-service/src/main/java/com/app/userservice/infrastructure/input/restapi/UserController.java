@@ -1,14 +1,13 @@
 package com.app.userservice.infrastructure.input.restapi;
 
 import com.app.userservice.application.port.input.UserParcelMachineUseCase;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserParcelMachineRestController {
+public class UserController {
     private final UserParcelMachineUseCase useCase;
 
-    public UserParcelMachineRestController(UserParcelMachineUseCase useCase) {
+    public UserController(UserParcelMachineUseCase useCase) {
         this.useCase = useCase;
     }
 }

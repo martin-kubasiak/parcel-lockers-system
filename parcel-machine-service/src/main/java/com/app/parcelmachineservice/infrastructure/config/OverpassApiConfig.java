@@ -1,4 +1,4 @@
-package com.app.userservice.infrastructure.config;
+package com.app.parcelmachineservice.infrastructure.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

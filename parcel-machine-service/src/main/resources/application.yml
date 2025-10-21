@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: parcel-machine-service
+
+overpass:
+  base-url: https://overpass-api.de/api
