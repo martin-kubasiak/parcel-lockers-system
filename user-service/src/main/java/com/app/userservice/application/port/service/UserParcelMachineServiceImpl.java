@@ -7,7 +7,7 @@ import com.app.userservice.domain.model.User;
 import java.util.List;
 
 
-public class UserParcelMachineServiceImpl implements  UserParcelMachineService{
+public class UserParcelMachineServiceImpl implements UserParcelMachineService {
 
     private final ParcelMachineClient parcelMachineClient;
 
@@ -16,7 +16,8 @@ public class UserParcelMachineServiceImpl implements  UserParcelMachineService{
     }
 
     @Override
-    public ParcelMachinePreference suggestNearestParcelMachine(User user, String label, double radiusKm) {
-        return null;
+    public List<String> findTopNearestParcelMachines(User user, double radiusKm) {
+        var userLocation = user.getLocation();
+        return parcelMachineClient.findParcelMachinesWithinRadius(userLocation, radiusKm);
     }
 }

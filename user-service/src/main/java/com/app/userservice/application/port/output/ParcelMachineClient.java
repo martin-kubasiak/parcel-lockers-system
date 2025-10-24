@@ -5,5 +5,5 @@ import com.app.userservice.domain.model.Location;
 import java.util.List;
 
 public interface ParcelMachineClient {
-    List<String> findNearestMachines(Location location, double radiusKm);
+    List<String> findParcelMachinesWithinRadius(Location location, double radiusKm);
 }

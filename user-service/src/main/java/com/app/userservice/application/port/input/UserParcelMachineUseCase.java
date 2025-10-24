@@ -1,8 +1,9 @@
 package com.app.userservice.application.port.input;
 
-import com.app.userservice.domain.model.ParcelMachinePreference;
 import com.app.userservice.domain.model.User;
 
+import java.util.List;
+
 public interface UserParcelMachineUseCase {
-    ParcelMachinePreference suggestNearestParcelMachine(User user, String label, double radiusKm);
+    List<String> findTopNearestParcelMachines(User user, double radiusKm);
 }
