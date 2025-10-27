@@ -1,3 +1,6 @@
 spring:
   application:
     name: user-service
+
+parcel-machine-service:
+  base-url: http://parcel-machine-service:8400
