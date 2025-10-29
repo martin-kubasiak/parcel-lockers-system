@@ -17,7 +17,7 @@ public class HttpParcelMachineClient implements ParcelMachineClient {
     }
 
     @Override
-    public List<String> findParcelMachinesWithinRadius(Location location, double radiusKm) {
+    public List<String> findParcelMachinesWithinRadius(Location userLocation, double radiusKm) {
         return List.of();
     }
 }
