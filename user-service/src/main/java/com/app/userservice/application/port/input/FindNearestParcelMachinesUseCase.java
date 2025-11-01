@@ -4,6 +4,6 @@ import com.app.userservice.domain.model.User;
 
 import java.util.List;
 
-public interface UserParcelMachineUseCase {
-    List<String> findTopNearestParcelMachines(User user, double radiusKm);
+public interface FindNearestParcelMachinesUseCase {
+    List<String> findNearestParcelMachines(User user, double radiusKm);
 }

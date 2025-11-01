@@ -4,7 +4,7 @@ import com.app.parcelmachineservice.domain.model.Location;
 
 import java.util.Optional;
 
-public interface ParcelMachineClient {
+public interface ParcelMachineDataOutputPort {
 
     Optional<ParcelMachineResult> findNearest(Location location, double radiusKm);
 
