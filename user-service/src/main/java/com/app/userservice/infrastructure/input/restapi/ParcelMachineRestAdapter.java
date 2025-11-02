@@ -4,10 +4,10 @@ import com.app.userservice.application.port.input.FindNearestParcelMachinesUseCa
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserRestApiAdapter {
+public class ParcelMachineRestAdapter {
     private final FindNearestParcelMachinesUseCase useCase;
 
-    public UserRestApiAdapter(FindNearestParcelMachinesUseCase useCase) {
+    public ParcelMachineRestAdapter(FindNearestParcelMachinesUseCase useCase) {
         this.useCase = useCase;
     }
 }

@@ -2,15 +2,16 @@ package com.app.userservice.application.port.service;
 
 import com.app.userservice.application.port.output.ParcelMachineServiceOutputPort;
 import com.app.userservice.domain.model.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
-public class UserParcelMachineServiceImpl implements UserParcelMachineService {
+@Service
+public class FindNearestParcelMachinesServiceImpl implements FindNearestParcelMachinesService {
 
     private final ParcelMachineServiceOutputPort parcelMachineClient;
 
-    public UserParcelMachineServiceImpl(ParcelMachineServiceOutputPort parcelMachineClient) {
+    public FindNearestParcelMachinesServiceImpl(ParcelMachineServiceOutputPort parcelMachineClient) {
         this.parcelMachineClient = parcelMachineClient;
     }
 
