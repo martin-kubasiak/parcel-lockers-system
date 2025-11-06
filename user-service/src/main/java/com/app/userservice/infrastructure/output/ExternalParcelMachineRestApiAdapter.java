@@ -8,11 +8,11 @@ import org.springframework.web.client.RestClient;
 import java.util.List;
 
 @Component
-public class ExternalParcelMachineRestAdapter implements ParcelMachineServiceOutputPort {
+public class ExternalParcelMachineRestApiAdapter implements ParcelMachineServiceOutputPort {
 
     private final RestClient restClient;
 
-    public ExternalParcelMachineRestAdapter(RestClient restClient) {
+    public ExternalParcelMachineRestApiAdapter(RestClient restClient) {
         this.restClient = restClient;
     }
 
