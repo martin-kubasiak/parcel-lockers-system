@@ -17,7 +17,7 @@ public class ExternalParcelMachineRestApiAdapter implements ParcelMachineService
     }
 
     @Override
-    public List<String> findParcelMachinesWithinRadius(Location userLocation, double radiusKm) {
+    public List<String> findNearestParcelMachines(Location userLocation, double radiusKm) {
         return List.of();
     }
 }

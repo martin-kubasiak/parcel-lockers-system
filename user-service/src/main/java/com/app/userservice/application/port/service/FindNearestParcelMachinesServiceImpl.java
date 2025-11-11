@@ -18,6 +18,6 @@ public class FindNearestParcelMachinesServiceImpl implements FindNearestParcelMa
     @Override
     public List<String> findNearestParcelMachines(User user, double radiusKm) {
         var userLocation = user.getLocation();
-        return parcelMachineClient.findParcelMachinesWithinRadius(userLocation, radiusKm);
+        return parcelMachineClient.findNearestParcelMachines(userLocation, radiusKm);
     }
 }

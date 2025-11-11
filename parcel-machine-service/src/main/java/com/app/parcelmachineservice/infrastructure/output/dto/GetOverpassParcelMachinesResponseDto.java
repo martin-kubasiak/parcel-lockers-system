@@ -7,6 +7,7 @@ public record GetOverpassParcelMachinesResponseDto(
         List<Element> elements
 ) {
     public record Element(
+            String type,
             long id,
             double lat,
             double lon,

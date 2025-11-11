@@ -5,5 +5,5 @@ import com.app.userservice.domain.model.Location;
 import java.util.List;
 
 public interface ParcelMachineServiceOutputPort {
-    List<String> findParcelMachinesWithinRadius(Location location, double radiusKm);
+    List<String> findNearestParcelMachines(Location location, double radiusKm);
 }
