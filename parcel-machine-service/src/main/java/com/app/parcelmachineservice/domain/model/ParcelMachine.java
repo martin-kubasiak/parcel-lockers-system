@@ -6,12 +6,14 @@ public class ParcelMachine {
 
     ParcelMachineId id;
     String brand;
+    String operator;
     Location location;
 
     public GetParcelMachineDto toGetParcelMachineDto() {
         return new GetParcelMachineDto(
                 id.id().toString(),
                 brand,
+                operator,
                 location.getLatitude(),
                 location.getLongitude());
     }
