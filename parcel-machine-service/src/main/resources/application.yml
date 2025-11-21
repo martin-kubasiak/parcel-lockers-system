@@ -2,5 +2,8 @@ spring:
   application:
     name: parcel-machine-service
 
+server:
+  port: 8400
+
 overpass:
   base-url: https://overpass-api.de/api

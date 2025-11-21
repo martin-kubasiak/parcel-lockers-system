@@ -11,6 +11,7 @@ import org.springframework.web.client.RestClient;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Locale;
 
 @Component
 @RequiredArgsConstructor
@@ -20,19 +21,14 @@ public class OverpassParcelMachineRestApiAdapter implements ParcelMachineDataOut
 
     @Override
     public List<ParcelMachineResult> findNearest(Location location, double radiusKm) {
-        String query = """
-                [out:json];
-                node
-                  ["amenity"="parcel_locker"]
-                  (around:%f,%f,%f);
-                out body;
-                """.formatted(
+
+        String query = String.format(Locale.ROOT,
+                "[out:json];node[\"amenity\"=\"parcel_locker\"](around:%f,%f,%f);out body;",
                 radiusKm * 1000,
                 location.getLatitude(),
                 location.getLongitude()
         );
-        String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
-        String url = "/interpreter?data=" + encodedQuery;
+        String url = "/interpreter?data=" + query;
 
         var response = restClient
                 .get()
