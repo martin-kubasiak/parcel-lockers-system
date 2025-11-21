@@ -20,7 +20,7 @@ public class ParcelMachineQueryServiceImpl implements ParcelMachineQueryService 
         return parcelMachineDataOutputPort
                 .findNearest(location, radiusKm)
                 .stream()
-                .map(ParcelMachineResult::toParcelMachineDto)
+                .map(ParcelMachineResult::toNearestParcelMachineDto)
                 .toList();
     }
 }

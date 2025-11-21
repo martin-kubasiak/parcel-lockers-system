@@ -12,7 +12,7 @@ public class ParcelMachineResult {
     private final String operator;
     private final Location location;
 
-    public NearestParcelMachineDto toParcelMachineDto() {
+    public NearestParcelMachineDto toNearestParcelMachineDto() {
         return new NearestParcelMachineDto(ref, brand, operator, location.getLatitude(), location.getLongitude());
     }
 
