@@ -3,14 +3,18 @@ services:
   mysql1:
     image: mysql:latest
     volumes:
-      - mysql1:/var/lib/mysql
-    restart: always
-    env_file:
-      - ./user-service/.env
+      - mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE_1}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_TCP_PORT: ${MYSQL_TCP_PORT_1}
+    command: --default-time-zone='+00:00'
     ports:
-      - "${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}"
+      - '${MYSQL_TCP_PORT_1}:${MYSQL_TCP_PORT_1}'
     expose:
-      - ${MYSQL_TCP_PORT}
+      - ${MYSQL_TCP_PORT_1}
     networks:
       - parcel-lockers-network
 
