@@ -1,13 +1,13 @@
-package com.app;
+package com.app.parcelmachineservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserServiceApplication {
+public class ParcelMachineServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(UserServiceApplication.class, args);
+        SpringApplication.run(ParcelMachineServiceApplication.class, args);
     }
 
 }
