@@ -1,4 +1,4 @@
-FROM openjdk:21
+FROM eclipse-temurin:21-jdk
 WORKDIR /app
 EXPOSE 8300
 COPY target/order-service.jar order-service.jar
