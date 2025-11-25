@@ -3,7 +3,7 @@ services:
   mysql1:
     image: mysql:latest
     volumes:
-      - mysql:/var/lib/mysql
+      - mysql1:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE_1}
@@ -22,13 +22,17 @@ services:
     image: mysql:latest
     volumes:
       - mysql2:/var/lib/mysql
-    restart: always
-    env_file:
-      - ./notification-service/.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE_2}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_TCP_PORT: ${MYSQL_TCP_PORT_2}
+    command: --default-time-zone='+00:00'
     ports:
-      - "${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}"
+      - '${MYSQL_TCP_PORT_2}:${MYSQL_TCP_PORT_2}'
     expose:
-      - ${MYSQL_TCP_PORT}
+      - ${MYSQL_TCP_PORT_2}
     networks:
       - parcel-lockers-network
 
@@ -36,13 +40,17 @@ services:
     image: mysql:latest
     volumes:
       - mysql3:/var/lib/mysql
-    restart: always
-    env_file:
-      - ./order-service/.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE_3}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_TCP_PORT: ${MYSQL_TCP_PORT_3}
+    command: --default-time-zone='+00:00'
     ports:
-      - "${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}"
+      - '${MYSQL_TCP_PORT_3}:${MYSQL_TCP_PORT_3}'
     expose:
-      - ${MYSQL_TCP_PORT}
+      - ${MYSQL_TCP_PORT_3}
     networks:
       - parcel-lockers-network
 
@@ -50,13 +58,17 @@ services:
     image: mysql:latest
     volumes:
       - mysql4:/var/lib/mysql
-    restart: always
-    env_file:
-      - ./parcel-machine-service/.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE_4}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_TCP_PORT: ${MYSQL_TCP_PORT_4}
+    command: --default-time-zone='+00:00'
     ports:
-      - "${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}"
+      - '${MYSQL_TCP_PORT_4}:${MYSQL_TCP_PORT_4}'
     expose:
-      - ${MYSQL_TCP_PORT}
+      - ${MYSQL_TCP_PORT_4}
     networks:
       - parcel-lockers-network
 
@@ -64,13 +76,17 @@ services:
     image: mysql:latest
     volumes:
       - mysql5:/var/lib/mysql
-    restart: always
-    env_file:
-      - ./parcel-service/.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE_5}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_TCP_PORT: ${MYSQL_TCP_PORT_5}
+    command: --default-time-zone='+00:00'
     ports:
-      - "${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}"
+      - '${MYSQL_TCP_PORT_5}:${MYSQL_TCP_PORT_5}'
     expose:
-      - ${MYSQL_TCP_PORT}
+      - ${MYSQL_TCP_PORT_5}
     networks:
       - parcel-lockers-network
 
