@@ -1,7 +1,8 @@
 spring:
   application:
     name: parcel-machine-service
-
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yml
   jpa:
     hibernate:
       ddl-auto: none

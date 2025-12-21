@@ -1,0 +1,60 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20251220-1
+      author: marcin
+      context: initial-schema
+      changes:
+        - createTable:
+            tableName: parcel_machines
+            columns:
+              - column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: osm_id
+                  type: BIGINT
+                  constraints:
+                    unique: true
+              - column:
+                  name: overpass_ref
+                  type: VARCHAR(50)
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_street
+                  type: VARCHAR(255)
+              - column:
+                  name: address_city
+                  type: VARCHAR(255)
+              - column:
+                  name: location
+                  type: POINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_updated
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 20251220-2
+      author: marcin
+      context: mysql-spatial
+      changes:
+        - sql:
+            dbms: mysql
+            sql: |
+              ALTER TABLE parcel_machines MODIFY location POINT SRID 4326 NOT NULL;
+              CREATE SPATIAL INDEX idx_location ON parcel_machines(location);
+      rollback:
+        - dropIndex:
+            indexName: idx_location
+            tableName: parcel_machines
+

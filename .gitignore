@@ -30,7 +30,9 @@ replay_pid*
 !.idea/inspectionProfiles
 *.iml
 
+# Others
 *.env
 *.env.example
 *.env.local
 *.env.staging
+liquibase.properties
