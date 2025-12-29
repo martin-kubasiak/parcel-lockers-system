@@ -1,10 +1,7 @@
 package com.app.parcelmachineservice.infrastructure.output.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.locationtech.jts.geom.Point;
 
@@ -14,9 +11,10 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "parcel_machines")
-public class ParcelMachine {
+public class ParcelMachineEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
