@@ -2,7 +2,6 @@ databaseChangeLog:
   - changeSet:
       id: 20251220-1
       author: marcin
-      context: initial-schema
       changes:
         - createTable:
             tableName: parcel_machines
@@ -46,7 +45,6 @@ databaseChangeLog:
   - changeSet:
       id: 20251220-2
       author: marcin
-      context: mysql-spatial
       changes:
         - sql:
             dbms: mysql

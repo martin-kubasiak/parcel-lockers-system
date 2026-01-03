@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20251230-1
+      author: marcin
+      changes:
+        - addUniqueConstraint:
+            columnNames: overpass_ref
+            tableName: parcel_machines
