@@ -1,6 +1,6 @@
 package com.app.parcelmachineservice.infrastructure.output;
 
-import com.app.parcelmachineservice.application.port.output.ParcelMachineDataOutputPort;
+import com.app.parcelmachineservice.application.port.output.ParcelMachineExternalApiPort;
 import com.app.parcelmachineservice.application.port.output.dto.ParcelMachineResult;
 import com.app.parcelmachineservice.domain.model.Location;
 import com.app.parcelmachineservice.infrastructure.output.dto.GetOverpassParcelMachinesResponseDto;
@@ -13,7 +13,7 @@ import java.util.Locale;
 
 @Component
 @RequiredArgsConstructor
-public class OverpassParcelMachineRestApiAdapter implements ParcelMachineDataOutputPort {
+public class OverpassParcelMachineRestApiAdapter implements ParcelMachineExternalApiPort {
 
     private final RestClient restClient;
 
