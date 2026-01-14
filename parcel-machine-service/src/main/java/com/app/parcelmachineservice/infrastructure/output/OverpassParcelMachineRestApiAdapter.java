@@ -1,9 +1,9 @@
 package com.app.parcelmachineservice.infrastructure.output;
 
 import com.app.parcelmachineservice.application.port.output.ParcelMachineExternalApiPort;
-import com.app.parcelmachineservice.application.port.output.dto.ParcelMachineResult;
+import com.app.parcelmachineservice.application.port.output.dto.ExternalParcelMachineData;
 import com.app.parcelmachineservice.domain.model.Location;
-import com.app.parcelmachineservice.infrastructure.output.dto.GetOverpassParcelMachinesResponseDto;
+import com.app.parcelmachineservice.infrastructure.output.dto.GetOverpassElementsDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
@@ -18,7 +18,7 @@ public class OverpassParcelMachineRestApiAdapter implements ParcelMachineExterna
     private final RestClient restClient;
 
     @Override
-    public List<ParcelMachineResult> findNearest(Location location, double radiusKm) {
+    public List<ExternalParcelMachineData> findNearest(Location location, double radiusKm) {
 
         String query = String.format(Locale.ROOT,
                 "[out:json];node[\"amenity\"=\"parcel_locker\"](around:%f,%f,%f);out body;",
@@ -32,13 +32,13 @@ public class OverpassParcelMachineRestApiAdapter implements ParcelMachineExterna
                 .get()
                 .uri(url)
                 .retrieve()
-                .body(GetOverpassParcelMachinesResponseDto.class);
+                .body(GetOverpassElementsDto.class);
 
         return response != null && response.elements() != null ?
                 response
                         .elements()
                         .stream()
-                        .map(ParcelMachineResult::from)
+                        .map(ExternalParcelMachineData::from)
                         .toList() :
                 List.of();
 

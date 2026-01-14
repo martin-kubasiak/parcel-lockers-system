@@ -2,7 +2,7 @@ package com.app.parcelmachineservice.application.port.service;
 
 import com.app.parcelmachineservice.application.port.input.dto.NearestParcelMachineDto;
 import com.app.parcelmachineservice.application.port.output.ParcelMachineExternalApiPort;
-import com.app.parcelmachineservice.application.port.output.dto.ParcelMachineResult;
+import com.app.parcelmachineservice.application.port.output.dto.ExternalParcelMachineData;
 import com.app.parcelmachineservice.domain.model.Location;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class ParcelMachineQueryServiceImpl implements ParcelMachineQueryService 
         return parcelMachineDataOutputPort
                 .findNearest(location, radiusKm)
                 .stream()
-                .map(ParcelMachineResult::toNearestParcelMachineDto)
+                .map(ExternalParcelMachineData::toNearestParcelMachineDto)
                 .toList();
     }
 }

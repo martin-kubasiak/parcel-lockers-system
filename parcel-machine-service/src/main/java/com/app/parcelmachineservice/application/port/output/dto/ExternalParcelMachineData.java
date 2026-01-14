@@ -2,25 +2,32 @@ package com.app.parcelmachineservice.application.port.output.dto;
 
 import com.app.parcelmachineservice.application.port.input.dto.NearestParcelMachineDto;
 import com.app.parcelmachineservice.domain.model.Location;
-import com.app.parcelmachineservice.infrastructure.output.dto.GetOverpassParcelMachinesResponseDto;
+import com.app.parcelmachineservice.infrastructure.output.dto.GetOverpassElementsDto;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class ParcelMachineResult {
+public class ExternalParcelMachineData {
+    private final Long osmId;
     private final String ref;
     private final String brand;
     private final String operator;
+    private final String street;
+    private final String city;
     private final Location location;
 
     public NearestParcelMachineDto toNearestParcelMachineDto() {
         return new NearestParcelMachineDto(ref, brand, operator, location.getLatitude(), location.getLongitude());
     }
 
-    public static ParcelMachineResult from(GetOverpassParcelMachinesResponseDto.Element element) {
+    public static ExternalParcelMachineData from(GetOverpassElementsDto.Element element) {
         var tags = element.tags();
-        return new ParcelMachineResult(tags.get("ref"),
+        return new ExternalParcelMachineData(
+                element.id(),
+                tags.get("ref"),
                 tags.getOrDefault("brand", "UNKNOWN"),
                 tags.getOrDefault("operator", "UNKNOWN"),
+                tags.getOrDefault("addr:street", "UNKNOWN"),
+                tags.getOrDefault("addr:city", "UNKNOWN"),
                 new Location(element.lat(), element.lon()));
     }
 }
