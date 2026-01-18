@@ -1,9 +1,13 @@
 package com.app.parcelmachineservice.domain.model;
 
-public class ParcelMachine {
+import java.time.LocalDateTime;
 
-    ParcelMachineId id;
+public class ParcelMachine {
+    String id;
+    Long osmId;
+    String ref;
     String brand;
     String operator;
     Location location;
+    LocalDateTime lastUpdated;
 }

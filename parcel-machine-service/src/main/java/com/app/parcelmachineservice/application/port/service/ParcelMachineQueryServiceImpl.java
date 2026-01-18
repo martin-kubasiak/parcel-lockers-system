@@ -18,7 +18,7 @@ public class ParcelMachineQueryServiceImpl implements ParcelMachineQueryService 
     @Override
     public List<NearestParcelMachineDto> findNearestParcelMachines(Location location, double radiusKm) {
         return parcelMachineDataOutputPort
-                .findNearest(location, radiusKm)
+                .fetchNearest(location, radiusKm)
                 .stream()
                 .map(ExternalParcelMachineData::toNearestParcelMachineDto)
                 .toList();

@@ -6,5 +6,5 @@ import com.app.parcelmachineservice.domain.model.Location;
 import java.util.List;
 
 public interface ParcelMachineExternalApiPort {
-    List<ExternalParcelMachineData> findNearest(Location location, double radiusKm);
+    List<ExternalParcelMachineData> fetchNearest(Location location, double radiusKm);
 }
