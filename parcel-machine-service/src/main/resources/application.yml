@@ -1,6 +1,7 @@
 spring:
   application:
     name: parcel-machine-service
+    db-record-freshness-threshold: PT24H
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yml
   jpa:

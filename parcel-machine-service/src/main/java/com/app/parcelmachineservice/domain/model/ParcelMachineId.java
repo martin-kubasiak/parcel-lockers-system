@@ -1,4 +1,6 @@
 package com.app.parcelmachineservice.domain.model;
 
-public record ParcelMachineId(Long id) {
+import java.util.UUID;
+
+public record ParcelMachineId(UUID id) {
 }

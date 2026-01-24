@@ -15,10 +15,6 @@ public class ExternalParcelMachineData {
     private final String city;
     private final Location location;
 
-    public NearestParcelMachineDto toNearestParcelMachineDto() {
-        return new NearestParcelMachineDto(ref, brand, operator, location.getLatitude(), location.getLongitude());
-    }
-
     public static ExternalParcelMachineData from(GetOverpassElementsDto.Element element) {
         var tags = element.tags();
         return new ExternalParcelMachineData(
