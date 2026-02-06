@@ -5,9 +5,11 @@ import com.app.parcelmachineservice.application.port.output.dto.ExternalParcelMa
 import com.app.parcelmachineservice.domain.model.Location;
 import com.app.parcelmachineservice.domain.model.ParcelMachine;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @RequiredArgsConstructor
 public class ParcelMachineOutputDbAdapter implements ParcelMachinePersistencePort {
     private final ParcelMachineRepository parcelMachineRepository;
