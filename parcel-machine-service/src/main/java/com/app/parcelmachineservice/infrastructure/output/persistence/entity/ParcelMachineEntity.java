@@ -32,6 +32,9 @@ public class ParcelMachineEntity {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private String operator;
+
     @Column(name = "address_street")
     private String addressStreet;
 

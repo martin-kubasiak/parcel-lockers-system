@@ -13,6 +13,22 @@ import java.util.UUID;
 public interface ParcelMachineRepository extends ListCrudRepository<ParcelMachineEntity, UUID> {
     Optional<ParcelMachineEntity> findByOsmId(Long osmId);
 
-    @Query(value = "SELECT * FROM parel_machines pm WHERE ST_Distance_Sphere(pm.location,:point) <=:radius", nativeQuery = true)
-    List<ParcelMachineEntity> findNearest(@Param("point") Point point, @Param("radius") double radiusInMeters);
+    @Query(value = """
+            SELECT * FROM parcel_machines pm
+            WHERE MBRContains(
+                    ST_MakeEnvelope(
+                        POINT(:minLon, :minLat),
+                        POINT(:maxLon, :maxLat)
+                    ),
+                    pm.location
+            )
+            AND ST_Distance_Sphere(pm.location, ST_GeomFromText(:pointWkt, 4326)) <= :radius
+            """, nativeQuery = true)
+    List<ParcelMachineEntity> findNearest(
+            @Param("minLon") double minLon,
+            @Param("minLat") double minLat,
+            @Param("maxLon") double maxLon,
+            @Param("maxLat") double maxLat,
+            @Param("pointWkt") String pointWkt,
+            @Param("radius") double radiusInMeters);
 }

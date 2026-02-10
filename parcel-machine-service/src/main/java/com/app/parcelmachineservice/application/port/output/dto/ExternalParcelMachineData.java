@@ -19,7 +19,7 @@ public class ExternalParcelMachineData {
         var tags = element.tags();
         return new ExternalParcelMachineData(
                 element.id(),
-                tags.get("ref"),
+                tags.getOrDefault("ref", "UNKNOWN"),
                 tags.getOrDefault("brand", "UNKNOWN"),
                 tags.getOrDefault("operator", "UNKNOWN"),
                 tags.getOrDefault("addr:street", "UNKNOWN"),
