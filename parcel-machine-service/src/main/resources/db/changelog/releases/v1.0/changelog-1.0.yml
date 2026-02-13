@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/releases/v1.0/001-initial-schema.yml
   - include:
       file: db/changelog/releases/v1.0/002-add-unique-overpass-ref.yml
+  - include:
+      file: db/changelog/releases/v1.0/003-add-operator-column.yml

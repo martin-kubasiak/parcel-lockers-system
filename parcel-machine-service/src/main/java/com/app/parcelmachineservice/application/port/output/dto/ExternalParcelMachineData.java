@@ -17,13 +17,15 @@ public class ExternalParcelMachineData {
 
     public static ExternalParcelMachineData from(GetOverpassElementsDto.Element element) {
         var tags = element.tags();
+        var brand = tags.getOrDefault("brand", "UNKNOWN");
+
         return new ExternalParcelMachineData(
                 element.id(),
-                tags.getOrDefault("ref", "UNKNOWN"),
-                tags.getOrDefault("brand", "UNKNOWN"),
-                tags.getOrDefault("operator", "UNKNOWN"),
-                tags.getOrDefault("addr:street", "UNKNOWN"),
-                tags.getOrDefault("addr:city", "UNKNOWN"),
+                tags.getOrDefault("ref", "NO_REF"),
+                brand,
+                tags.getOrDefault("operator", brand),
+                tags.getOrDefault("addr:street", null),
+                tags.getOrDefault("addr:city", null),
                 new Location(element.lat(), element.lon()));
     }
 }

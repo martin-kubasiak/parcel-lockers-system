@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20260213-1
+      author: marcin
+      changes:
+        - addColumn:
+            tableName: parcel_machines
+            columns:
+              - column:
+                  name: operator
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
