@@ -3,8 +3,10 @@ package com.app.parcelmachineservice.application.port.output.dto;
 import com.app.parcelmachineservice.application.port.input.dto.NearestParcelMachineDto;
 import com.app.parcelmachineservice.domain.model.Location;
 import com.app.parcelmachineservice.infrastructure.output.dto.GetOverpassElementsDto;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+@Getter
 @RequiredArgsConstructor
 public class ExternalParcelMachineData {
     private final Long osmId;
@@ -26,6 +28,7 @@ public class ExternalParcelMachineData {
                 tags.getOrDefault("operator", brand),
                 tags.getOrDefault("addr:street", null),
                 tags.getOrDefault("addr:city", null),
-                new Location(element.lat(), element.lon()));
+                new Location(element.lat(), element.lon())
+        );
     }
 }

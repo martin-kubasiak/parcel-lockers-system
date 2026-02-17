@@ -1,7 +1,6 @@
 package com.app.parcelmachineservice.infrastructure.output.persistence.repository;
 
 import com.app.parcelmachineservice.infrastructure.output.persistence.entity.ParcelMachineEntity;
-import org.locationtech.jts.geom.Point;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -12,6 +11,8 @@ import java.util.UUID;
 
 public interface ParcelMachineRepository extends ListCrudRepository<ParcelMachineEntity, UUID> {
     Optional<ParcelMachineEntity> findByOsmId(Long osmId);
+
+    List<ParcelMachineEntity> findAllByOsmIdIn(List<Long> ids);
 
     @Query(value = """
             SELECT * FROM parcel_machines pm

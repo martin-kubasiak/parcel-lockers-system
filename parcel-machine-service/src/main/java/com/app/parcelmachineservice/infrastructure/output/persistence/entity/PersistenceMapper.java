@@ -1,9 +1,12 @@
 package com.app.parcelmachineservice.infrastructure.output.persistence.entity;
 
+import com.app.parcelmachineservice.application.port.output.dto.ExternalParcelMachineData;
 import com.app.parcelmachineservice.domain.model.Location;
 import com.app.parcelmachineservice.domain.model.ParcelMachine;
 import com.app.parcelmachineservice.domain.model.ParcelMachineId;
+import org.locationtech.jts.geom.Point;
 import org.springframework.stereotype.Component;
+
 
 @Component
 public class PersistenceMapper {
@@ -21,5 +24,14 @@ public class PersistenceMapper {
                 )
                 .lastUpdated(entity.getLastUpdated())
                 .build();
+    }
+
+    public void updateEntityFromExternal(ParcelMachineEntity entity, ExternalParcelMachineData external, Point dbPoint) {
+        entity.setOverpassRef(external.getRef());
+        entity.setName(external.getBrand());
+        entity.setOperator(external.getOperator());
+        entity.setAddressStreet(external.getStreet());
+        entity.setAddressCity(external.getCity());
+        entity.setLocation(dbPoint);
     }
 }

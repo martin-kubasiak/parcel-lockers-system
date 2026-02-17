@@ -49,11 +49,12 @@ public class ParcelMachineEntity {
     private LocalDateTime lastUpdated;
 
     @Builder
-    public ParcelMachineEntity(Long osmId, String overpassRef, String name,
+    public ParcelMachineEntity(Long osmId, String overpassRef, String name, String operator,
                                String addressStreet, String addressCity, Point location) {
         this.osmId = osmId;
         this.overpassRef = overpassRef;
         this.name = name;
+        this.operator = operator;
         this.addressStreet = addressStreet;
         this.addressCity = addressCity;
         this.location = location;

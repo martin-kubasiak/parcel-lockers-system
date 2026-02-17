@@ -8,9 +8,14 @@ import com.app.parcelmachineservice.infrastructure.output.persistence.entity.Par
 import com.app.parcelmachineservice.infrastructure.output.persistence.entity.PersistenceMapper;
 import com.app.parcelmachineservice.infrastructure.output.persistence.entity.utils.GeometryUtils;
 import lombok.RequiredArgsConstructor;
+import org.locationtech.jts.geom.Point;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
 @RequiredArgsConstructor
@@ -40,8 +45,47 @@ public class ParcelMachineOutputDbAdapter implements ParcelMachinePersistencePor
                 .toList();
     }
 
+    @Transactional
     @Override
     public List<ParcelMachine> saveAll(List<ExternalParcelMachineData> externalData) {
-        return List.of();
+
+        var osmIds = externalData
+                .stream()
+                .map(ExternalParcelMachineData::getOsmId)
+                .toList();
+
+        List<ParcelMachineEntity> existingEntities = repository.findAllByOsmIdIn(osmIds);
+
+        Map<Long, ParcelMachineEntity> existingEntitiesWithOsmId = existingEntities
+                .stream()
+                .collect(Collectors.toMap(
+                        ParcelMachineEntity::getOsmId,
+                        entity -> entity)
+                );
+
+        var toSave = externalData
+                .stream()
+                .map(data -> {
+                    Point dbPoint = GeometryUtils.createPoint(
+                            data.getLocation().getLongitude(),
+                            data.getLocation().getLatitude()
+                    );
+                    var entity = existingEntitiesWithOsmId.getOrDefault(
+                            data.getOsmId(),
+                            ParcelMachineEntity
+                                    .builder()
+                                    .osmId(data.getOsmId())
+                                    .build()
+                    );
+                    persistenceMapper.updateEntityFromExternal(entity, data, dbPoint);
+                    return entity;
+                })
+                .toList();
+
+        var saved = repository.saveAll(toSave);
+        return saved
+                .stream()
+                .map(persistenceMapper::toParcelMachine)
+                .toList();
     }
 }
