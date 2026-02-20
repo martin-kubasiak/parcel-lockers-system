@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20260221-1
+      author: marcin
+      changes:
+        - dropUniqueConstraint:
+            tableName: parcel_machines
+            constraintName: overpass_ref

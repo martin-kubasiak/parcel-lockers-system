@@ -21,7 +21,7 @@ public class OverpassParcelMachineRestApiAdapter implements ParcelMachineExterna
     public List<ExternalParcelMachineData> fetchNearest(Location location, double radiusKm) {
 
         String query = String.format(Locale.ROOT,
-                "[out:json];node[\"amenity\"=\"parcel_locker\"](around:%f,%f,%f);out body;",
+                "[out:json][timeout:30];node[\"amenity\"=\"parcel_locker\"](around:%f,%f,%f);out body;",
                 radiusKm * 1000,
                 location.getLatitude(),
                 location.getLongitude()

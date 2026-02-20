@@ -19,11 +19,11 @@ public class ExternalParcelMachineData {
 
     public static ExternalParcelMachineData from(GetOverpassElementsDto.Element element) {
         var tags = element.tags();
-        var brand = tags.getOrDefault("brand", "UNKNOWN");
+        var brand = tags.getOrDefault("brand", tags.getOrDefault("operator", "UNKNOWN"));
 
         return new ExternalParcelMachineData(
                 element.id(),
-                tags.getOrDefault("ref", "NO_REF"),
+                tags.get("ref"),
                 brand,
                 tags.getOrDefault("operator", brand),
                 tags.getOrDefault("addr:street", null),

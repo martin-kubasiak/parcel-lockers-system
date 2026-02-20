@@ -31,12 +31,11 @@ public class ParcelMachineOutputDbAdapter implements ParcelMachinePersistencePor
                 radiusKm
         );
 
-        var pointWkt = "POINT(%f %f)".formatted(location.getLatitude(), location.getLongitude());
-
         List<ParcelMachineEntity> entities = repository.findNearest(
                 bbox.minLon(), bbox.minLat(),
                 bbox.maxLon(), bbox.maxLat(),
-                pointWkt,
+                location.getLatitude(),
+                location.getLongitude(),
                 radiusKm * 1000
         );
         return entities
