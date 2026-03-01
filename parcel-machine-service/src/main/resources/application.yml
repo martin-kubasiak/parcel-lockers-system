@@ -2,8 +2,10 @@ spring:
   application:
     name: parcel-machine-service
     db-record-freshness-threshold: PT24H
+
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yml
+
   jpa:
     hibernate:
       ddl-auto: validate
@@ -14,23 +16,6 @@ spring:
           batch_size: 20
         order_updates: true
         order_inserts: true
-        generate_statistics: true
-  datasource:
-    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
-
-server:
-  port: 8400
 
 overpass:
   base-url: https://overpass-api.de/api
-
-logging:
-  level:
-    org.springframework.orm.jpa: DEBUG
-    org.springframework.transaction: DEBUG
-    org.springframework.data.jpa: DEBUG
-    org.hibernate.sql: DEBUG
-    org.hibernate.type.descriptor.sql: TRACE
-    org.hibernate.stat: DEBUG
