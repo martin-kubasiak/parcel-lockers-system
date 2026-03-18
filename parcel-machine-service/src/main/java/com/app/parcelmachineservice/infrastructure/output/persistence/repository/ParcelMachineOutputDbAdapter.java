@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Component
 @RequiredArgsConstructor
@@ -32,12 +31,13 @@ public class ParcelMachineOutputDbAdapter implements ParcelMachinePersistencePor
         );
 
         List<ParcelMachineEntity> entities = repository.findNearest(
-                bbox.minLon(), bbox.minLat(),
-                bbox.maxLon(), bbox.maxLat(),
+                bbox.minLat(), bbox.minLon(),
+                bbox.maxLat(), bbox.maxLon(),
                 location.getLatitude(),
                 location.getLongitude(),
                 radiusKm * 1000
         );
+
         return entities
                 .stream()
                 .map(persistenceMapper::toParcelMachine)

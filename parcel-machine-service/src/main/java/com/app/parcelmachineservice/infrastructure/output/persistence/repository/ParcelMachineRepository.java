@@ -17,23 +17,30 @@ public interface ParcelMachineRepository extends ListCrudRepository<ParcelMachin
     @Query(value = """
             SELECT * FROM parcel_machines pm
             WHERE MBRContains(
-                    ST_SRID(
-                        ST_MakeEnvelope(
-                            POINT(:minLon, :minLat),
-                            POINT(:maxLon, :maxLat)
-                        ),
+                    ST_GeomFromText(
+                        CONCAT('POLYGON((',
+                            :minLat, ' ', :minLon, ', ',
+                            :maxLat, ' ', :minLon, ', ',
+                            :maxLat, ' ', :maxLon, ', ',
+                            :minLat, ' ', :maxLon, ', ',
+                            :minLat, ' ', :minLon,
+                        '))'),
                         4326
                     ),
                     pm.location
             )
-            AND ST_Distance_Sphere(pm.location, ST_SRID(POINT(:lat, :lon), 4326)) <= :radius
+            AND ST_Distance_Sphere(
+                        pm.location,
+                        ST_GeomFromText(CONCAT('POINT(', :lat, ' ', :lon, ')'), 4326)
+                ) <= :radius
             """, nativeQuery = true)
     List<ParcelMachineEntity> findNearest(
-            @Param("minLon") double minLon,
             @Param("minLat") double minLat,
-            @Param("maxLon") double maxLon,
+            @Param("minLon") double minLon,
             @Param("maxLat") double maxLat,
+            @Param("maxLon") double maxLon,
             @Param("lat") double lat,
             @Param("lon") double lon,
             @Param("radius") double radiusInMeters);
+
 }
